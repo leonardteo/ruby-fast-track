@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Hello Ruby!</title>
+  </head>
+  <body>
+    <%# For each post... %>
+    <% @posts.each do |post| %>
+      <h1><%= post.title %></h1>
+      <p>By: <%= post.user.name %></p>
+      <p><%= post.body %>
+    <% end %>
+  </body>
+</html>
+

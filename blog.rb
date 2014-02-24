@@ -13,19 +13,15 @@ class Blog
   # Rack just returns a single array
   def call(env)
     headers = {
-      "Content-Type" => "text/plain"
+      "Content-Type" => "text/html"
     }
 
-    posts = Post.all
-    response = ""
-    posts.each do |post|
-      response += "#{post.title}\n"
-      response += "#{post.user.name}\n"
-      response += "#{post.body}\n\n"
-    end
+    @posts = Post.all
+    
+    # Get the template
+    template = ERB.new(File.read("template.html.erb")) 
+    response_body = [template.result(binding)]
 
-    # Response needs to respond to .each method, so we put the string in an array
-    response_body = [response]
     # The return array
     [200, headers, response_body]
   end
