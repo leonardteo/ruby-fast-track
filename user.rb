@@ -2,7 +2,7 @@
 class User < Model
   attr_accessor :first_name, :last_name, :posts
 
-  @first_name = "User"
+  set_table_name "users"
 
   def initialize(args = {})
     super args
