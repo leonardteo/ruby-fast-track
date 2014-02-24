@@ -33,4 +33,19 @@ class Model
     arr
   end
 
+  # Finds a single object
+  def self.find(id)
+    result = @@db.execute2 "SELECT * FROM #{@table_name} WHERE id = #{id} LIMIT 1"
+    columns = result.shift
+    row = result.first
+    if row.nil?
+      raise Exception.new "No record found"
+    end
+    attrs = {}
+    columns.each_with_index do |col, i|
+      attrs[col.to_sym] = row[i]
+    end
+    self.new(attrs)
+  end
+
 end

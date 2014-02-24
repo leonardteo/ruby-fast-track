@@ -10,4 +10,8 @@ class Post < Model
     @user_id = args[:user_id]
   end
 
+  def user
+    User.find @user_id
+  end
+
 end
